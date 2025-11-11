@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Campaign Tracker</title>
+<link rel='stylesheet' href='/static/css/style.css'>
+</head>
+<body>
+<div class='container'>
+<header><h1>Campaign Tracker</h1></header>
+<section class='card'>
+<h2>Add Campaign</h2>
+<form id='form'>
+<input id='campaign_name' placeholder='Campaign Name' required><br>
+<input id='client_name' placeholder='Client Name' required><br>
+<input id='start_date' type='date' required><br>
+<select id='status'><option>Active</option><option>Paused</option><option>Completed</option></select><br>
+<button type='submit'>Add</button>
+</form>
+</section>
+<section class='card'>
+<h2>All Campaigns</h2>
+<table id='table'><thead><tr><th>Name</th><th>Client</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table>
+</section>
+</div>
+<script src='/static/js/app.js'></script>
+</body>
+</html>
