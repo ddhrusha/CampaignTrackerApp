@@ -1,0 +1,6 @@
+async function api(path,method='GET',body=null){const res=await fetch('/api'+path,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):null});if(!res.ok)throw await res.json();return res.json();}
+async function load(){const data=await api('/campaigns');const tbody=document.querySelector('#table tbody');tbody.innerHTML='';data.forEach(c=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${c.campaign_name}</td><td>${c.client_name}</td><td>${c.start_date}</td><td>${c.status}</td><td><button onclick=upd('${c.id}','Active')>A</button><button onclick=upd('${c.id}','Paused')>P</button><button onclick=upd('${c.id}','Completed')>C</button><button onclick=del('${c.id}')>Del</button></td>`;tbody.append(tr);});}
+async function upd(id,status){await api('/campaigns/'+id,'PUT',{status});load();}
+async function del(id){await api('/campaigns/'+id,'DELETE');load();}
+document.getElementById('form').onsubmit=async e=>{e.preventDefault();await api('/campaigns','POST',{campaign_name:campaign_name.value,client_name:client_name.value,start_date:start_date.value,status:status.value});e.target.reset();load();}
+load();
